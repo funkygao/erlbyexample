@@ -9,4 +9,4 @@ minus(M, N) ->
     M-N.
 
 hello() ->
-    io:format("Hello world~n").
+    format("Hello world~n").
