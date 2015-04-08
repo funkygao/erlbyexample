@@ -1,4 +1,11 @@
 # erlbyexample
 erlang programming by example
 
-http://learnyousomeerlang.com/content
+### erl
+
+- Enable epoll
+  erl +K true
+
+### Reference
+
+- http://learnyousomeerlang.com/content
