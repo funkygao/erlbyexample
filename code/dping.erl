@@ -36,5 +36,5 @@ start_pong() ->
     register(pong, spawn(dping, pong, [])).
 
 start_ping(PongNode) ->
-    spawn(dping, ping, [5, PongNode]).
+    spawn(?MODULE, ping, [5, PongNode]).
 
