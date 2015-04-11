@@ -1,16 +1,16 @@
 -module(ping).
--export([start/0, ping/2, pong/0]).
+-export([start/0, ping/1, pong/0]).
 
-ping(0, PongPid) ->
-    PongPid ! finished,
+ping(0) ->
+    pong ! finished,
     io:format("ping finished~n", []);
-ping(N, PongPid) ->
-    PongPid ! {ping, self()},
+ping(N) ->
+    pong ! {ping, self()},
     receive 
         pong ->
             io:format("Ping received pong~n", [])
     end,
-    ping(N-1, PongPid).
+    ping(N-1).
 
 pong() ->
     receive
@@ -23,6 +23,6 @@ pong() ->
     end.
 
 start() ->
-    PongPid = spawn(ping, pong, []),
-    spawn(ping, ping, [5, PongPid]).
+    register(pong, spawn(ping, pong, [])),
+    ping(3).
 
